@@ -41,6 +41,9 @@ body{
 .logo{
   height: 35px;
 }
+.logo:hover{
+  animation: rotateLogo 1s ease-out;
+}
 
 .heading-text-box{
   position: absolute;
@@ -52,6 +55,7 @@ body{
 .heading-primary{
   color:#fff;
   text-transform: uppercase;
+  backface-visibility: hidden;
 }
 
 .heading-primary-main{
@@ -59,10 +63,124 @@ body{
   font-size: 60px;
   font-weight: 400;
   letter-spacing: 35px;
+
+  animation-name: moveInLeft;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  /* animation-delay: 3s; 
+  animation-iteration-count: 3; */
 }
 .heading-primary-sub{
   display: block;
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 17.4px;
+
+  animation: moveInRight 1s ease-out;
+}
+
+@keyframes moveInLeft{
+  0%{
+    opacity: 0;
+    transform: translateX(-100px) rotate(0deg);
+  }
+  40%{
+    transform: translateX(-20px) rotate(120deg);
+  }
+  80%{
+    transform: translateX(10px) rotate(240deg) ;
+  }
+  100%{
+    opacity: 1;
+    transform: translateX(0) rotate(359deg) ;
+  }
+}
+
+@keyframes moveInRight{
+  0%{
+    opacity: 0;
+    transform: translatex(100px);
+  }
+  40%{
+    transform: translateX(10px);
+  }
+  80%{
+    transform: translateX(-10px);
+  }
+  100%{
+    opacity:1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rotateLogo{
+  0%{
+    opacity: 0;
+    transform: rotate(0deg);
+  }
+  50%{
+    transform: rotate(270deg)
+  }
+  100%{
+    transform: rotate(358deg);
+  }
+}
+@keyframes moveButton{
+  0%{
+    opacity:0;
+    transform: translateY(50px);
+  }
+  100%{
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+.btn:visited , .btn:link{
+  text-transform: uppercase;
+  text-decoration: none;
+  padding:15px 40px;
+  display: inline-block;
+  border-radius: 100px;
+  transition: all .2s;
+  position: relative;
+  left:30%;
+  margin-top: 30px;
+}
+.btn-hover{
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.btn-active{
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.btn-white{
+  background-color: #fff;
+  color: #777;
+}
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 10rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  -webkit-transition: all .4s;
+  transition: all .4s;
+}
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+.btn-animated{
+  animation: moveButton .5s ease-out .75s;
+  animation-fill-mode: backwards;
 }
